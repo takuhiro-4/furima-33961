@@ -11,6 +11,9 @@ class ItemsController < ApplicationController
     @user = User.create(user_params)
   end
 
+  def destroy
+  end
+
   private
   def user_params
     params.require(:user).permit(:nickname, :kjname, :namekj, :knname, :namekn, :dob)
