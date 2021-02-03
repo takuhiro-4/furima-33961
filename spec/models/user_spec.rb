@@ -94,13 +94,13 @@ RSpec.describe User, type: :model do
       end
 
       it 'kjnameは全角の漢字でないと登録できない' do
-        @user.kjname = "サカタ"
+        @user.kjname = "sakata"
         @user.valid?
         expect(@user.errors.full_messages).to include "Kjname is invalid"
       end
 
       it 'namekjは全角の漢字でないと登録できない' do
-        @user.namekj = "サカタ"
+        @user.namekj = "sakata"
         @user.valid?
         expect(@user.errors.full_messages).to include "Namekj is invalid"
       end
@@ -120,6 +120,25 @@ RSpec.describe User, type: :model do
       it 'dobが空では登録できない' do
         @user.dob = ""
         @user.valid?
+        expect(@user.errors.full_messages).to include "Dob can't be blank"
+      end
+
+      it 'passwordは英語のみでは登録できないこと' do
+        @user.password = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      end
+
+      it 'passwordは数字のみでは登録できないこと' do
+        @user.password = "111111"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      end
+
+      it 'passwordは全角では登録できないこと' do
+        @user.password = "AAAAAA"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
 
     end
