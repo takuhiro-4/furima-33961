@@ -38,7 +38,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '0以外でないと登録できないこと' do
-        @item.kategory_id = '0'
+        @item.kategory_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include "Kategory must be other than 0"
       end
@@ -50,7 +50,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '0以外でないと登録できないこと' do
-        @item.state_id = '0'
+        @item.state_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include "State must be other than 0"
       end
@@ -62,7 +62,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '0以外でないと登録できないこと' do
-        @item.burden_id = '0'
+        @item.burden_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include "Burden must be other than 0"
       end
@@ -74,7 +74,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '0以外でないと登録できないこと' do
-        @item.area_id = '0'
+        @item.area_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include "Area must be other than 0"
       end
@@ -86,7 +86,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '0以外でないと登録できないこと' do
-        @item.sipping_id = '0'
+        @item.sipping_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include "Sipping must be other than 0"
       end
@@ -116,13 +116,13 @@ RSpec.describe Item, type: :model do
       end
 
       it '299円以下では登録できないこと' do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include "Price must be greater than or equal to 300"
       end
 
       it '10,000,000以上では登録できないこと' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include "Price must be less than or equal to 9999999"
       end
