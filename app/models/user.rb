@@ -20,4 +20,6 @@ class User < ApplicationRecord
       validates :namekn
     end
 
+    has_many :items
+
 end
