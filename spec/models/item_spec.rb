@@ -20,49 +20,49 @@ RSpec.describe Item, type: :model do
       end
 
       it '名前が空では出品できない' do
-        @item.name = ""
+        @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Name can't be blank"
       end
 
       it '説明が空では出品できない' do
-        @item.description = ""
+        @item.description = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Description can't be blank"
       end
 
       it 'カテゴリー情報が空では出品できない' do
-        @item.kategory_id = ""
+        @item.kategory_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Kategory is not a number"
+        expect(@item.errors.full_messages).to include 'Kategory is not a number'
       end
 
       it '状態が空では出品できない' do
-        @item.state_id = ""
+        @item.state_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "State is not a number"
+        expect(@item.errors.full_messages).to include 'State is not a number'
       end
 
       it '配送料の負担が空では出品できない' do
-        @item.burden_id = ""
+        @item.burden_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Burden is not a number"
+        expect(@item.errors.full_messages).to include 'Burden is not a number'
       end
 
       it '発送元地域何からでは出品できない' do
-        @item.area_id = ""
+        @item.area_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Area is not a number"
+        expect(@item.errors.full_messages).to include 'Area is not a number'
       end
 
       it '発送までの日数が空では出品できない' do
-        @item.sipping_id = ""
+        @item.sipping_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Sipping is not a number"
+        expect(@item.errors.full_messages).to include 'Sipping is not a number'
       end
 
       it '価格が空では出品できない' do
-        @item.price = ""
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
@@ -74,6 +74,4 @@ RSpec.describe Item, type: :model do
       end
     end
   end
-
 end
-

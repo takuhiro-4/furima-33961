@@ -18,14 +18,14 @@ RSpec.describe User, type: :model do
       end
 
       it 'kjnameとnamekjが全角の漢字であれば登録できる' do
-        @user.kjname = "坂田"
-        @user.namekj = "坂田"
+        @user.kjname = '坂田'
+        @user.namekj = '坂田'
         expect(@user).to be_valid
       end
 
       it 'knnameとnameknが全角のカタカナであれば登録できる' do
-        @user.knname = "サカタ"
-        @user.namekn = "サカタ"
+        @user.knname = 'サカタ'
+        @user.namekn = 'サカタ'
         expect(@user).to be_valid
       end
     end
@@ -55,25 +55,25 @@ RSpec.describe User, type: :model do
       end
 
       it 'kjnameが空では登録できない' do
-        @user.kjname = ""
+        @user.kjname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Kjname can't be blank"
       end
 
       it 'namekjが空では登録できない' do
-        @user.namekj = ""
+        @user.namekj = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Namekj can't be blank"
       end
 
       it 'knnameが空では登録できない' do
-        @user.knname = ""
+        @user.knname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Knname can't be blank"
       end
 
       it 'nameknが空では登録できない' do
-        @user.namekn = ""
+        @user.namekn = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Namekn can't be blank"
       end
@@ -94,53 +94,52 @@ RSpec.describe User, type: :model do
       end
 
       it 'kjnameは全角の漢字でないと登録できない' do
-        @user.kjname = "sakata"
+        @user.kjname = 'sakata'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Kjname is invalid"
+        expect(@user.errors.full_messages).to include 'Kjname is invalid'
       end
 
       it 'namekjは全角の漢字でないと登録できない' do
-        @user.namekj = "sakata"
+        @user.namekj = 'sakata'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Namekj is invalid"
+        expect(@user.errors.full_messages).to include 'Namekj is invalid'
       end
 
       it 'knnameは全角カタカナでないと登録できない' do
-        @user.knname = "ｻｶﾀ"
+        @user.knname = 'ｻｶﾀ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Knname is invalid"
+        expect(@user.errors.full_messages).to include 'Knname is invalid'
       end
 
       it 'knnameは全角カタカナでないと登録できない' do
-        @user.namekn = "ｻｶﾀ"
+        @user.namekn = 'ｻｶﾀ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Namekn is invalid"
+        expect(@user.errors.full_messages).to include 'Namekn is invalid'
       end
 
       it 'dobが空では登録できない' do
-        @user.dob = ""
+        @user.dob = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Dob can't be blank"
       end
 
       it 'passwordは英語のみでは登録できないこと' do
-        @user.password = "aaaaaa"
+        @user.password = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
 
       it 'passwordは数字のみでは登録できないこと' do
-        @user.password = "111111"
+        @user.password = '111111'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
 
       it 'passwordは全角では登録できないこと' do
-        @user.password = "AAAAAA"
+        @user.password = 'AAAAAA'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
-
     end
   end
 end

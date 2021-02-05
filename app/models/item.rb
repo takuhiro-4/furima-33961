@@ -23,5 +23,4 @@ class Item < ApplicationRecord
     validates :area_id
     validates :sipping_id
   end
-
 end
