@@ -10,11 +10,7 @@ class PrecordsController < ApplicationController
     @order = Order.new(order_params)
     if @order.valid?
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-      Payjp::Charge.create(
-        amount: @item[:price],
-        card: order_params[:token],
-        currency: 'jpy'
-      )
+      Payjp::Charge.create(token_charge)
       @order.save
       redirect_to root_path
     else
@@ -33,5 +29,11 @@ class PrecordsController < ApplicationController
   def no_shipping_item
     @item = Item.find(params[:item_id])
     return redirect_to root_path if current_user.id == @item.user_id || @item.precord.present?
+  end
+
+  def token_charge
+    amount: @item[:price],
+        card: order_params[:token],
+        currency: 'jpy'
   end
 end

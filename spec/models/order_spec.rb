@@ -9,11 +9,11 @@ RSpec.describe Order, type: :model do
 
   describe '発送先の入力項目' do
     context '発送できるとき' do
-      it '郵便番号、都道府県、市区町村、番地、電話番号、tokenがあれば発送できる' do
+      it '郵便番号、都道府県、市区町村、番地、建物名、電話番号、tokenがあれば発送できる' do
         expect(@order).to be_valid
       end
 
-      it '番地が空でも発送できる' do
+      it '建物名が空でも発送できる' do
         @order.building = ""
         expect(@order).to be_valid
       end
@@ -26,13 +26,13 @@ RSpec.describe Order, type: :model do
       end
 
       it '郵便番号は7桁以内出ないと発送できない' do
-        @order.postalc = 12_345_678
+        @order.postalc = '12_345_678'
         @order.valid?
         expect(@order.errors.full_messages).to include 'Postalc is invalid'
       end
 
       it '郵便番号に-がないと発送できない' do
-        @order.postalc = 1_234_567
+        @order.postalc = '1_234_567'
         @order.valid?
         expect(@order.errors.full_messages).to include 'Postalc is invalid'
       end
@@ -68,7 +68,7 @@ RSpec.describe Order, type: :model do
       end
 
       it '電話番号は11桁以内出ないと発送できない' do
-        @order.phonen = 123_456_789_012
+        @order.phonen = '123_456_789_012'
         @order.valid?
         expect(@order.errors.full_messages).to include "Phonen is invalid"
       end
