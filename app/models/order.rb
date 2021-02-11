@@ -6,17 +6,17 @@ class Order
     validates :user_id
     validates :item_id
     validates :postalc, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
-    validates :prefecture_id, numericality: {other_than: 0}
+    validates :prefecture_id, numericality: { other_than: 0 }
     validates :municipality
     validates :address
     validates :phonen, format: { with: /\A\d{11}\z/ }
     validates :token
   end
-  
-  
-# データをテーブルに保存する処理
+
+  # データをテーブルに保存する処理
   def save
     precord = Precord.create(user_id: user_id, item_id: item_id)
-    Purchase.create(postalc: postalc, prefecture_id: prefecture_id, municipality: municipality, address: address, building: building, phonen: phonen, precord_id: precord.id)
+    Purchase.create(postalc: postalc, prefecture_id: prefecture_id, municipality: municipality, address: address,
+                    building: building, phonen: phonen, precord_id: precord.id)
   end
 end

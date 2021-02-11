@@ -15,25 +15,25 @@ RSpec.describe Order, type: :model do
     end
     context '発送できないとき' do
       it '郵便番号が空では発送できない' do
-        @order.postalc = ""
+        @order.postalc = ''
         @order.valid?
         expect(@order.errors.full_messages).to include "Postalc can't be blank"
       end
 
       it '郵便番号は7桁以内出ないと発送できない' do
-        @order.postalc = 12345678
+        @order.postalc = 12_345_678
         @order.valid?
-        expect(@order.errors.full_messages).to include "Postalc is invalid"
+        expect(@order.errors.full_messages).to include 'Postalc is invalid'
       end
 
       it '郵便番号に-がないと発送できない' do
-        @order.postalc = 1234567
+        @order.postalc = 1_234_567
         @order.valid?
-        expect(@order.errors.full_messages).to include "Postalc is invalid"
+        expect(@order.errors.full_messages).to include 'Postalc is invalid'
       end
 
       it '都道府県が空では発送できない' do
-        @order.prefecture_id = ""
+        @order.prefecture_id = ''
         @order.valid?
         expect(@order.errors.full_messages).to include "Prefecture can't be blank"
       end
@@ -41,31 +41,31 @@ RSpec.describe Order, type: :model do
       it '0以外でないと発送できない' do
         @order.prefecture_id = 0
         @order.valid?
-        expect(@order.errors.full_messages).to include "Prefecture must be other than 0"
+        expect(@order.errors.full_messages).to include 'Prefecture must be other than 0'
       end
 
       it '市区町村が空では発送できない' do
-        @order.municipality = ""
+        @order.municipality = ''
         @order.valid?
         expect(@order.errors.full_messages).to include "Municipality can't be blank"
       end
 
       it '番地が空では発送できない' do
-        @order.address = ""
+        @order.address = ''
         @order.valid?
         expect(@order.errors.full_messages).to include "Address can't be blank"
       end
 
       it '電話番号が空では発送できない' do
-        @order.phonen = ""
+        @order.phonen = ''
         @order.valid?
         expect(@order.errors.full_messages).to include "Phonen can't be blank"
       end
 
       it '電話番号は11桁以内出ないと発送できない' do
-        @order.phonen = 123456789012
+        @order.phonen = 123_456_789_012
         @order.valid?
-        expect(@order.errors.full_messages).to include "Phonen is invalid"
+        expect(@order.errors.full_messages).to include 'Phonen is invalid'
       end
 
       it 'tokenが空では発送できない' do
