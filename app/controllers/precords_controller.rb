@@ -1,4 +1,6 @@
 class PrecordsController < ApplicationController
+  before_action :authenticate_user!, only: :index
+  before_action :no_shipping_item, only: :index
 
   def index
     @order = Order.new
@@ -25,5 +27,12 @@ class PrecordsController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:postalc, :prefecture_id, :municipality, :address, :building, :phonen, :price, :user_id, :item_id).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def no_shipping_item
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id || @item.precord.present?
+      return redirect_to root_path
+    end
   end
 end

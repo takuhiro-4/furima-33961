@@ -4,12 +4,15 @@ class Order
 
   with_options presence: true do
     validates :user_id
+    validates :item_id
     validates :postalc, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :prefecture_id, numericality: {other_than: 0}
     validates :municipality
     validates :address
-    validates :phonen
+    validates :phonen, format: { with: /\A\d{11}\z/ }
+    validates :token
   end
+  
   
 # データをテーブルに保存する処理
   def save
