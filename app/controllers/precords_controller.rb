@@ -1,14 +1,12 @@
 class PrecordsController < ApplicationController
-  before_action :authenticate_user!, only: :index
-  before_action :no_shipping_item, only: :index
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :no_shipping_item, only: [:index, :create]
 
   def index
     @order = Order.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = Order.new(order_params)
     if @order.valid?
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
@@ -27,7 +25,7 @@ class PrecordsController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postalc, :prefecture_id, :municipality, :address, :building, :phonen, :price, :user_id, :item_id).merge(
+    params.require(:order).permit(:postalc, :prefecture_id, :municipality, :address, :building, :phonen, :price).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end

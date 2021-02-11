@@ -9,7 +9,8 @@ class Order
     validates :prefecture_id, numericality: { other_than: 0 }
     validates :municipality
     validates :address
-    validates :phonen, format: { with: /\A\d{11}\z/ }
+    validates :phonen, format: { with: /\A\d{0,11}\z/ }
+    validates :phonen, format: { with: /\A-?[0-9]+(\.[0-9]+)?\z/ }
     validates :token
   end
 

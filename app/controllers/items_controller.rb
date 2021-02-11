@@ -51,6 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def no_sipping_item
-    redirect_to action: :index if current_user.id == @item.user_id || @item.precord.present?
+    redirect_to action: :index if current_user.id != @item.user_id || @item.precord.present?
   end
 end
