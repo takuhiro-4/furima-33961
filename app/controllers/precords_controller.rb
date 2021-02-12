@@ -9,7 +9,8 @@ class PrecordsController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.valid?
-      @order.save(token_charge)
+      @order.save
+      token_charge
       redirect_to root_path
     else
       render :index
